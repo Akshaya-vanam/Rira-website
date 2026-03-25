@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <title>RIRA - Wear Your Story</title>
+        <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet"/>
+        <link rel="stylesheet" href="style.css"/>
+    </head>
+
+    <body>
+
+        <div class="announcement-bar">
+        Free shipping on orders above ₹1999 &nbsp;·&nbsp;
+        New collection dropping soon &nbsp;·&nbsp;
+        Use code RIRA10 for 10% off
+        </div>
+
+        <nav class="nav">
+        <div class="nav-left">
+            <a href="#products">Collections</a>
+            <a href="#about">About</a>
+        </div>
+
+        <div class="nav-logo">
+            <div class="logo-serif">R!RA</div>
+            <div class="logo-tagline">Wear Your Story</div>
+        </div>
+
+        <div class="nav-right">
+            <a href="#">Care Guide</a>
+            <button class="cart-btn" onclick="openCart()">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/>
+                <line x1="3" y1="6" x2="21" y2="6"/>
+                <path d="M16 10a4 4 0 01-8 0"/>
+            </svg>
+            <span class="cart-count" id="cart-count">0</span>
+            </button>
+        </div>
+        </nav>
+
+        <section class="hero">
+
+            <div class="hero-content">
+                <div class="hero-line"></div>
+                <div class="section-tag">New Collection · SS '25</div>
+                <h1 class="hero-heading">
+                Dress the way<br/>
+                <em>you feel.</em>
+                </h1>
+                <p class="hero-sub">
+                Thoughtfully crafted pieces for the woman who wears
+                her story with quiet confidence. Each piece handmade
+                in mul chanderi.
+                </p>
+                <div class="hero-actions">
+                <button class="btn-primary"
+                    onclick="document.getElementById('products')
+                    .scrollIntoView({behavior:'smooth'})">
+                    Shop Now
+                </button>
+                <button class="btn-outline">View Lookbook</button>
+                </div>
+            </div>
+
+            <div class="hero-image">
+                <div class="hero-img-box">
+                <img src="images/teal.jpg" alt="RIRA Collection"/>
+                </div>
+                <div class="hero-img-tag">SS '25 Collection</div>
+            </div>
+
+        </section>
+
+        <div class="marquee-wrap">
+            <div class="marquee-track">
+                <span>Handcrafted with Love</span><span class="sep">·</span>
+                <span>Mul Chanderi Fabric</span><span class="sep">·</span>
+                <span>Made to Order</span><span class="sep">·</span>
+                <span>Ships Worldwide</span><span class="sep">·</span>
+                <span>Customisation Available</span><span class="sep">·</span>
+                <!-- duplicate text so the loop is seamless -->
+                <span>Handcrafted with Love</span><span class="sep">·</span>
+                <span>Mul Chanderi Fabric</span><span class="sep">·</span>
+                <span>Made to Order</span><span class="sep">·</span>
+                <span>Ships Worldwide</span><span class="sep">·</span>
+                <span>Customisation Available</span><span class="sep">·</span>
+            </div>
+
+        <section class="products-section reveal" id="products">
+
+            <div class="products-header">
+                <div class="section-tag">The Collection</div>
+                <h2 class="section-heading">Stories Worth Wearing</h2>
+                <p class="products-sub">
+                Each piece is handcrafted in mul chanderi.
+                Made to order in sizes XS–3XL.
+                </p>
+            </div>
+
+            <!-- JS fills this in automatically -->
+            <div class="products-grid" id="products-grid"></div>
+
+        </section>
+
+</div>
+
+    <!-- dark overlay behind the cart -->
+<div class="cart-overlay" id="cart-overlay" onclick="closeCart()"></div>
+
+<!-- the sliding panel -->
+        <div class="cart-sidebar" id="cart-sidebar">
+
+        <div class="cart-header">
+            <h3>Your Cart</h3>
+            <button class="cart-close" onclick="closeCart()">✕</button>
+        </div>
+
+        <!-- JS renders items here -->
+        <div class="cart-items" id="cart-items">
+            <div class="cart-empty">
+            <p>Your cart is empty</p>
+            <span>Add something beautiful</span>
+            </div>
+        </div>
+
+        <div class="cart-footer">
+            <div class="cart-total-row">
+            <span>Subtotal</span>
+            <span id="cart-total">₹0</span>
+            </div>
+            <p class="cart-note">Shipping calculated at checkout</p>
+            <button class="btn-primary" style="width:100%"
+            onclick="openCheckout()">
+            Proceed to Checkout
+            </button>
+        </div>
+
+        </div>
+
+
+        <!-- dark overlay behind checkout -->
+            <div class="checkout-overlay" id="checkout-overlay"></div>
+
+            <!-- full screen checkout modal -->
+            <div class="checkout-modal" id="checkout-modal">
+            <div class="checkout-inner">
+
+                <!-- LEFT — the form -->
+                <div class="checkout-left">
+
+                <div class="checkout-logo">R!RA</div>
+                <h2 class="checkout-heading">Complete your order</h2>
+                <p class="checkout-sub">Handcrafted just for you</p>
+
+                <!-- Contact -->
+                <div class="form-section">
+                    <div class="form-label">Contact</div>
+                    <input type="email" placeholder="Email address"
+                    class="form-input" id="input-email"/>
+                    <input type="tel" placeholder="Phone number"
+                    class="form-input" id="input-phone"/>
+                </div>
+
+                <!-- Delivery -->
+                <div class="form-section">
+                    <div class="form-label">Delivery</div>
+                    <input type="text" placeholder="Full name"
+                    class="form-input" id="input-name"/>
+                    <input type="text" placeholder="Address line 1"
+                    class="form-input" id="input-address"/>
+                    <input type="text" placeholder="Address line 2 (optional)"
+                    class="form-input"/>
+                    <div class="form-row">
+                    <input type="text" placeholder="City"
+                        class="form-input" id="input-city"/>
+                    <input type="text" placeholder="PIN code"
+                        class="form-input" id="input-pin"/>
+                    </div>
+                    <input type="text" placeholder="State"
+                    class="form-input" id="input-state"/>
+                </div>
+
+                <!-- Size -->
+                <div class="form-section">
+                    <div class="form-label">Size</div>
+                    <div class="size-grid">
+                    <button class="size-btn" onclick="selectSize(this)">XS</button>
+                    <button class="size-btn" onclick="selectSize(this)">S</button>
+                    <button class="size-btn active" onclick="selectSize(this)">M</button>
+                    <button class="size-btn" onclick="selectSize(this)">L</button>
+                    <button class="size-btn" onclick="selectSize(this)">XL</button>
+                    <button class="size-btn" onclick="selectSize(this)">2XL</button>
+                    <button class="size-btn" onclick="selectSize(this)">3XL</button>
+                    </div>
+                    <p class="size-note">Not sure? <a href="#">View size guide</a></p>
+                </div>
+
+                <button class="btn-primary"
+                    style="width:100%; padding:16px; font-size:0.85rem;"
+                    onclick="placeOrder()">
+                    Place Order
+                </button>
+
+                <button class="checkout-back" onclick="closeCheckout()">
+                    ← Back to cart
+                </button>
+
+                </div>
+
+                <!-- RIGHT — order summary -->
+                <div class="checkout-right">
+                <div class="order-summary">
+                    <div class="summary-label">Order Summary</div>
+                    <div id="summary-items"></div>
+                    <div class="summary-divider"></div>
+                    <div class="summary-row">
+                    <span>Subtotal</span>
+                    <span id="summary-subtotal">₹0</span>
+                    </div>
+                    <div class="summary-row">
+                    <span>Shipping</span>
+                    <span class="summary-free">Free</span>
+                    </div>
+                    <div class="summary-row summary-total">
+                    <span>Total</span>
+                    <span id="summary-total">₹0</span>
+                    </div>
+                </div>
+
+                <div class="checkout-trust">
+                    <div class="trust-item">🔒 Secure checkout</div>
+                    <div class="trust-item">🚚 Free shipping above ₹1999</div>
+                    <div class="trust-item">✂️ Made to order</div>
+                    <div class="trust-item">💬 WhatsApp support</div>
+                </div>
+                </div>
+
+            </div>
+            </div>
+
+            <div class="success-overlay" id="success-overlay">
+            <div class="success-box">
+                <div class="success-icon">🤍</div>
+                <h2>Order Placed!</h2>
+                <p>Thank you for choosing RIRA. Your handcrafted piece will be made just for you. We'll reach out on WhatsApp to confirm.</p>
+                <button class="btn-primary" onclick="closeSuccess()">
+                Continue Shopping
+                </button>
+            </div>
+            </div>
+
+            <section class="about-strip reveal" id="about">
+
+        <div class="about-img">
+            <img src="images/olive.jpg" alt="RIRA Story"/>
+        </div>
+
+        <div class="about-content">
+            <div class="section-tag">Our Story</div>
+            <h2 class="section-heading">
+            Made with intention,<br/>
+            <em>worn with pride.</em>
+            </h2>
+            <p>RIRA was born from a belief that clothing is more than
+            fabric — it is memory, identity, and emotion. Based in
+            Jaipur and Mumbai, every piece is handcrafted by skilled
+            artisans using embroidery techniques passed down through
+            generations.</p>
+            <p>We create limited runs, made to order, so every garment
+            is as unique as the woman who wears it.</p>
+            <button class="btn-outline" style="margin-top:32px;">
+            DM for Customisation
+            </button>
+        </div>
+
+        <footer class="footer reveal" id="care">
+
+        <div class="footer-top">
+
+            <div class="footer-brand">
+            <div class="logo-serif" style="font-size:1.8rem;">R!RA</div>
+            <div class="logo-tagline" style="margin-top:6px;">
+                Wear Your Story
+            </div>
+            <p class="footer-desc">
+                Handcrafted Indian fashion. Based in Jaipur & Mumbai.
+                Ships worldwide.
+            </p>
+            </div>
+
+            <div class="footer-col">
+            <div class="footer-col-title">Shop</div>
+            <a href="#">New Arrivals</a>
+            <a href="#">Kurta Sets</a>
+            <a href="#">Anarkalis</a>
+            <a href="#">Co-ords</a>
+            </div>
+
+            <div class="footer-col">
+            <div class="footer-col-title">Help</div>
+            <a href="#">Size Guide</a>
+            <a href="#">Care Instructions</a>
+            <a href="#">Shipping Policy</a>
+            <a href="#">Returns</a>
+            </div>
+
+            <div class="footer-col">
+            <div class="footer-col-title">Connect</div>
+            <a href="#">Instagram</a>
+            <a href="#">WhatsApp</a>
+            <a href="#">Pinterest</a>
+            <a href="#">Email Us</a>
+            </div>
+
+        </div>
+
+        <div class="footer-bottom">
+            <span>© 2025 RIRA. All rights reserved.</span>
+            <span>Made with love in India 🇮🇳</span>
+        </div>
+
+        </footer>
+</section>
+    <script src="main.js"></script>
+    </body>
+</html>
